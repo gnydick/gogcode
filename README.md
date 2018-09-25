@@ -1,2 +1,0 @@
-# gogcode
-gcode utility
