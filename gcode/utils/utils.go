@@ -2,9 +2,28 @@ package utils
 
 import (
 	"fmt"
-	"github.com/gnydick/gogcode/gcode/structs"
+	. "github.com/gnydick/gogcode/gcode/structs"
+	"log"
+
+	r "regexp"
+	"strconv"
 	"strings"
 )
+
+
+type Util struct {
+	commandRe *r.Regexp
+	paramRe *r.Regexp
+}
+
+
+
+func NewUtil() *Util {
+	return &Util{
+		commandRe: r.MustCompile(`^(?P<command>[GM])(?P<value>-*[0-9.]+)$`),
+		paramRe:   r.MustCompile(`^(?P<param>[A-Z])(?P<value>-*[0-9]+\.*[0-9]*)$`),
+	}
+}
 
 func beautifyLine(line string) (tokens []string) {
 	fields := strings.Fields(line)
@@ -12,6 +31,8 @@ func beautifyLine(line string) (tokens []string) {
 	for _, field := range fields {
 		if strings.HasPrefix(field, ";") {
 			break
+		} else if strings.HasSuffix(field, ";") {
+			tokens = append(tokens, field[0:len(field)-2])
 		} else {
 			tokens = append(tokens, field)
 		}
@@ -19,39 +40,60 @@ func beautifyLine(line string) (tokens []string) {
 	return
 }
 
-func DetectTravel(gcode structs.GcodeState, line string) (travel bool) {
-	inMove := false
+func (u Util) GenGcode(line string) *Instruction {
 	tokens := beautifyLine(line)
-	travel = false
+	instruction := NewInstruction()
+	if len(tokens) >= 1 {
+		for _, commandMatches := range u.commandRe.FindAllStringSubmatchIndex(tokens[0], -1) {
+			command := make([]byte, 0)
+			instruction.Command = string(u.commandRe.ExpandString(command, "$command$value", tokens[0], commandMatches))
+		}
+		if len(tokens) >= 2 {
+			for _, token := range tokens[1:] {
 
-	for _, token := range tokens {
-		if inMove {
-			if strings.HasPrefix(token, "Z") || strings.HasPrefix(token, "E") {
-				travel = false
-				break
+				for _, paramMatches := range u.paramRe.FindAllStringSubmatchIndex(token, -1) {
+					param := make([]byte, 0)
+					paramString := string(u.paramRe.ExpandString(param, "$param$value", token, paramMatches))
+					value, _err := strconv.ParseFloat(string(u.paramRe.ExpandString(param, "$value", token, paramMatches)), 64)
+					if _err != nil {
+						log.Fatal(_err.Error())
+					}
+
+
+					instruction.Position[paramString[0:1]] = value
+				}
 			}
-		} else if token == "G1" {
-			inMove = true
-			travel = true
 		}
 	}
-	return
+	return &instruction
 }
 
-func BuildState(gcode structs.GcodeState, terms []string) {
+func DetectTravel(gcode *Instruction) (bool) {
 
+	if (*gcode).Command == "G1" {
+		if (*gcode).HasCoordinate("X") || (*gcode).HasCoordinate("Y") {
+			if (*gcode).HasCoordinate("Z") || (*gcode).HasCoordinate("E") {
+				return false
+			} else {
+				return true
+			}
+		}
+	}
+	return false
 }
 
-func AddZHop(line string, hop float32) string {
+func AddZHop(line *string, hop float32) string {
 	sb := strings.Builder{}
 	// TODO
 	// get positioning mode before changing and changing back
 	sb.WriteString("G91 ; set relative positioning ; added by gogcode\n")
 	sb.WriteString(fmt.Sprintf("G1 Z%f ; hop! ; added by gogcode\n", hop))
 	sb.WriteString("G90 ; set absolute positioning ; added by gogcode\n")
-	sb.WriteString(fmt.Sprintf("%s\n", line))
+	sb.WriteString(fmt.Sprintf("%s\n", *line))
 	sb.WriteString("G91 ; set relative positioning ; added by gogcode\n")
 	sb.WriteString(fmt.Sprintf("G1 Z-%f ; hop! ; added by gogcode\n", hop))
 	sb.WriteString("G90 ; set absolute positioning ; added by gogcode\n")
 	return sb.String()
 }
+
+
