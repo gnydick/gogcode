@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1cf41982-abaf-4c75-accb-2e52446ba42c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/addIron/addIron.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/addZhop/addZhop.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ironLayer/ironLayer.go" afterDir="false" />
+    <list default="true" id="1cf41982-abaf-4c75-accb-2e52446ba42c" name="Default Changelist" comment="added a module to generate a lapping run.&#10;&#10;stick sandpaper to your bed and you're off to the races.">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/addZhop/addZhop.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ironLayer/ironLayer.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lapping/lapping.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lapping/lapping.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcode/structs/structs.go" beforeDir="false" afterPath="$PROJECT_DIR$/gcode/structs/structs.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addIron/addIron.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gcode/utils/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/gcode/utils/utils.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gogcode.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gogcode.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,68 +34,47 @@
     <expand />
     <select />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="1346609746">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="9" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.11" value="2" />
-          <entry key="project.open.time.12" value="3" />
-          <entry key="project.open.time.14" value="1" />
-          <entry key="project.open.time.15" value="2" />
-          <entry key="project.open.time.18" value="1" />
-          <entry key="project.opened" value="11" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="go" value="64" />
-          <entry key="s" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Go" value="64" />
-          <entry key="x86 Plan9 Assembly" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="go" value="9987" />
-          <entry key="txt" value="258" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Go" value="9987" />
-          <entry key="PLAIN_TEXT" value="258" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.js.language.service.starts" />
-      <usages-collector id="statistics.go.postfix.template.usages.trigger">
-        <counts>
-          <entry key=".println" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.vcs.git.usages" />
-      <usages-collector id="statistics.spring.boot.run.usages" />
-      <usages-collector id="statistics.spring.boot.mvc.usages" />
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gcode/utils/utils.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1056">
-              <caret line="56" column="63" selection-start-line="56" selection-start-column="63" selection-end-line="56" selection-end-column="63" />
+            <state relative-caret-position="281">
+              <caret line="95" column="76" selection-start-line="95" selection-start-column="76" selection-end-line="95" selection-end-column="76" />
               <folding>
+                <element signature="e#15#120#0" expanded="true" />
                 <element signature="n#!!block;n#NewUtil#0" expanded="true" />
                 <element signature="n#!!block;n#beautifyLine#0" expanded="true" />
+                <element signature="n#!!block;n#GenGcode#0" expanded="true" />
                 <element signature="n#!!block;n#DetectTravel#0" expanded="true" />
                 <element signature="n#!!block;n#AddZHop#0" expanded="true" />
+                <element signature="n#!!block;n#GenRandMove#0" expanded="true" />
+                <element signature="e#2624#2674#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lapping/lapping.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+              <folding>
+                <element signature="e#17#84#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://D:/Go/src/fmt/print.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="268" column="5" selection-start-line="268" selection-start-column="5" selection-end-line="268" selection-end-column="5" />
+              <folding>
+                <element signature="e#7684#7780#0" expanded="true" />
+                <element signature="e#7891#7969#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,7 +83,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://D:/Go/src/regexp/regexp.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
+            <state relative-caret-position="3542">
               <caret line="236" column="5" selection-start-line="236" selection-start-column="5" selection-end-line="236" selection-end-column="16" />
               <folding>
                 <element signature="e#8715#8851#0" expanded="true" />
@@ -134,10 +116,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ironLayer/ironLayer.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1278">
-              <caret line="71" column="36" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
+            <state relative-caret-position="552">
+              <caret line="38" selection-start-line="38" selection-end-line="38" />
               <folding>
-                <element signature="n#!!block;n#main#1" expanded="true" />
+                <element signature="n#!!block;n#flush#0" expanded="true" />
                 <element signature="n#!!block;n#isExtrudeMove#0" expanded="true" />
                 <element signature="n#!!block;n#pipeInstruction#0" expanded="true" />
               </folding>
@@ -147,10 +129,15 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>e</find>
-      <find>gogcode</find>
       <find>gocode</find>
       <find>print</find>
       <find>scanner.Text()</find>
@@ -165,7 +152,6 @@
       <find>&quot;</find>
       <find>\n</find>
       <find>F18</find>
-      <find>float32</find>
       <find>fmt.</find>
       <find>G1 Z</find>
       <find>state</find>
@@ -179,10 +165,14 @@
       <find>MovementOnly</find>
       <find>G1 E-15</find>
       <find>has</find>
+      <find>switch</find>
+      <find>int8</find>
+      <find>float32</find>
     </findStrings>
     <replaceStrings>
       <replace>gogcode</replace>
       <replace>line</replace>
+      <replace>float32</replace>
       <replace>float64</replace>
     </replaceStrings>
     <dirStrings>
@@ -202,16 +192,11 @@
         <option value="$PROJECT_DIR$/addZhop/addZhop.go" />
         <option value="$PROJECT_DIR$/addIron/addIron.go" />
         <option value="$PROJECT_DIR$/gcode/structs/structs.go" />
-        <option value="$PROJECT_DIR$/gcode/utils/utils.go" />
         <option value="$PROJECT_DIR$/ironLayer/ironLayer.go" />
+        <option value="$PROJECT_DIR$/lapping/lapping.go" />
+        <option value="$PROJECT_DIR$/gcode/utils/utils.go" />
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
@@ -263,49 +248,6 @@
             </path>
             <path>
               <item name="gogcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gogcode" type="462c0819:PsiDirectoryNode" />
-              <item name="addZhop" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gogcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gogcode" type="462c0819:PsiDirectoryNode" />
-              <item name="gcode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gogcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gogcode" type="462c0819:PsiDirectoryNode" />
-              <item name="gcode" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gogcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gogcode" type="462c0819:PsiDirectoryNode" />
-              <item name="ironLayer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gogcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="gogcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go SDK 1.10.4" type="20ee2d1f:SyntheticLibraryElementNode" />
-            </path>
-            <path>
-              <item name="gogcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go SDK 1.10.4" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gogcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go SDK 1.10.4" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="flag" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gogcode" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
           </expand>
@@ -315,15 +257,23 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="GO_FMT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545812919832" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547331592877" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="C:/Program Files/nodejs/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -347,7 +297,17 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build ironLayer">
+  <component name="RunManager" selected="Go Build.go build lapping">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="gogcode" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$" />
+      <package value="github.com/gnydick/gogcode" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build addIron" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="gogcode" />
       <working_directory value="$PROJECT_DIR$" />
@@ -384,9 +344,31 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration name="go build lapping" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="lapping" />
+      <working_directory value="$PROJECT_DIR$" />
+      <parameters value="-r 100 -n 20" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/lapping/lapping.go" />
+      <package value="github.com/gnydick/gogcode" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="gogcode" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="DIRECTORY" />
+      <package value="github.com/gnydick/gogcode" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Go Build.go build addIron" />
       <item itemvalue="Go Build.go build ironLayer" />
+      <item itemvalue="Go Build.go build lapping" />
       <item itemvalue="Go Build.go build addZhop" />
     </list>
     <recent_temporary>
@@ -415,7 +397,8 @@
       <workItem from="1542252643796" duration="598000" />
       <workItem from="1545775133764" duration="27152000" />
       <workItem from="1545967724026" duration="1332000" />
-      <workItem from="1545978122376" duration="812000" />
+      <workItem from="1545978122376" duration="1899000" />
+      <workItem from="1547317559144" duration="6714000" />
     </task>
     <task id="LOCAL-00001" summary="gettin some stuff done">
       <created>1537842088753</created>
@@ -428,12 +411,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52169000" />
+    <option name="totallyTimeSpent" value="59970000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2575" height="1424" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13583699" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18138234" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -442,16 +425,17 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32945737" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.29689923" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.41162792" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3359375" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4109375" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3860465" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.24453124" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="11" visible="true" weight="0.3296875" />
+      <window_info anchor="right" id="Maven" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -468,12 +452,13 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/gogcode" />
+    </ignored-roots>
     <MESSAGE value="gettin some stuff done" />
-    <option name="LAST_COMMIT_MESSAGE" value="gettin some stuff done" />
+    <MESSAGE value="added a module to generate a lapping run.&#10;&#10;stick sandpaper to your bed and you're off to the races." />
+    <option name="LAST_COMMIT_MESSAGE" value="added a module to generate a lapping run.&#10;&#10;stick sandpaper to your bed and you're off to the races." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -493,10 +478,13 @@
           <line>64</line>
           <option name="timeStamp" value="104" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/gcode/utils/utils.go</url>
+          <line>107</line>
+          <properties />
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
       </breakpoints>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="GoApplicationRunConfiguration">
@@ -648,13 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Go/src/fmt/print.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="289" column="25" selection-start-line="289" selection-start-column="25" selection-end-line="289" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/addZhop.go" />
     <entry file="file://D:/Go/src/strings/strings.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -684,13 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addIron/addIron.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Go/src/runtime/asm_amd64.s">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
@@ -709,6 +683,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4">
           <caret selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Go/src/regexp/regexp.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3542">
+          <caret line="236" column="5" selection-start-line="236" selection-start-column="5" selection-end-line="236" selection-end-column="16" />
+          <folding>
+            <element signature="e#8715#8851#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -731,35 +715,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Go/src/regexp/regexp.go">
+    <entry file="file://D:/Go/src/fmt/print.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="236" column="5" selection-start-line="236" selection-start-column="5" selection-end-line="236" selection-end-column="16" />
+        <state relative-caret-position="320">
+          <caret line="268" column="5" selection-start-line="268" selection-start-column="5" selection-end-line="268" selection-end-column="5" />
           <folding>
-            <element signature="e#8715#8851#0" expanded="true" />
+            <element signature="e#7684#7780#0" expanded="true" />
+            <element signature="e#7891#7969#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lapping/lapping.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+          <folding>
+            <element signature="e#17#84#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gcode/utils/utils.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="56" column="63" selection-start-line="56" selection-start-column="63" selection-end-line="56" selection-end-column="63" />
+        <state relative-caret-position="281">
+          <caret line="95" column="76" selection-start-line="95" selection-start-column="76" selection-end-line="95" selection-end-column="76" />
           <folding>
+            <element signature="e#15#120#0" expanded="true" />
             <element signature="n#!!block;n#NewUtil#0" expanded="true" />
             <element signature="n#!!block;n#beautifyLine#0" expanded="true" />
+            <element signature="n#!!block;n#GenGcode#0" expanded="true" />
             <element signature="n#!!block;n#DetectTravel#0" expanded="true" />
             <element signature="n#!!block;n#AddZHop#0" expanded="true" />
+            <element signature="n#!!block;n#GenRandMove#0" expanded="true" />
+            <element signature="e#2624#2674#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addIron/addIron.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ironLayer/ironLayer.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1278">
-          <caret line="71" column="36" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
+        <state relative-caret-position="552">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
           <folding>
-            <element signature="n#!!block;n#main#1" expanded="true" />
+            <element signature="n#!!block;n#flush#0" expanded="true" />
             <element signature="n#!!block;n#isExtrudeMove#0" expanded="true" />
             <element signature="n#!!block;n#pipeInstruction#0" expanded="true" />
           </folding>
@@ -769,9 +775,81 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Python 2.7 (snip) interpreter library</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>addZhop</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>

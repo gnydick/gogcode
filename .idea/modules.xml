@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/addZhop/addZhop.iml" filepath="$PROJECT_DIR$/addZhop/addZhop.iml" />
       <module fileurl="file://$PROJECT_DIR$/gogcode.iml" filepath="$PROJECT_DIR$/gogcode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ironLayer/ironLayer.iml" filepath="$PROJECT_DIR$/ironLayer/ironLayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lapping/lapping.iml" filepath="$PROJECT_DIR$/lapping/lapping.iml" />
     </modules>
   </component>
 </project>
