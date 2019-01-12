@@ -1,6 +1,7 @@
-This is a very rough start to some g-code utilities.
+# This is a very rough start to some g-code utilities, but...
+The goal of this project is to create more and more g-code processing capabilities to help solve problems Makers have. Ultimately, the beginnings of the structs and utils could morph into a custom g-code generator. I've know idea how to write a slicer, but there is a lot that can be done with the base g-code to make very interesting things happen e.g. velocity painting.
 
-**gogcode:** main directory, top level intellij project
+**gogcode:** main directory, top level intellij project with util libs and main structs
 
 **addZhop:** scans your g-code and detects travel movements and adds a z-hop around them so your print head doesn't scrape along the print
 
