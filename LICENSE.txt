@@ -1,0 +1,17 @@
+This repo is open to the public in perpetuity to use as wanted. The only restrictions are as follows.
+
+1) All derivative work shall credit the original.
+2) If used commercially, any and all changes must be submitted back to the original.
+3) No individual, corporation, or other entity that can use software; past, present, or future; having any relationship with **M3D LLC in Fulton, Maryland** is explicitely forbidden from using this repository.
+
+
+Copyright 2018 Gabe E. Nydick
+
+Licensed under an augmented version of the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+Additional Terms:
+
+**No individual, corporation, or other entity that can use, read, execute, compile, evaluate, install, distribute, sell, buy, or any other possible interactions with software; past, present, or future; having any relationship with **M3D LLC in Fulton, Maryland** is explicitely forbidden from using this repository in perpetuity.**
