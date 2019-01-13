@@ -14,4 +14,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 Additional Terms:
 
-**No individual, corporation, or other entity that can use, read, execute, compile, evaluate, install, distribute, sell, buy, or any other possible interactions with software; past, present, or future; having any relationship with **M3D LLC in Fulton, Maryland** is explicitely forbidden from using this repository in perpetuity.**
+No individual, corporation, or other entity that can use, read, execute, compile, evaluate, install, distribute, sell, buy, or any other possible interactions with software; past, present, or future; having any relationship with M3D LLC in Fulton, Maryland as well as any future incarnations, subsidiaries, spin-offs, mergers, or other types of business transformation, is explicitely forbidden from using this repository in perpetuity.
