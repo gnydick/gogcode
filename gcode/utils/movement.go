@@ -4,6 +4,7 @@ import (
 	"fmt"
 	. "github.com/gnydick/gogcode/gcode/structs"
 	"log"
+	"math/rand"
 
 	r "regexp"
 	"strconv"
@@ -101,4 +102,31 @@ func AddZHop(line *string, hop float32) string {
 	sb.WriteString(fmt.Sprintf("G1 Z-%f ; hop! ; added by gogcode\n", hop))
 	sb.WriteString("G90 ; set absolute positioning ; added by gogcode\n")
 	return sb.String()
+}
+
+func GenRandMove(startX float64, startY float64, radius *float64, speed *int) {
+
+	/*
+		starting point is (startX, startY)
+		pick a randum number, multiply it by 2 * radius
+		add that to startX - radius
+
+
+	*/
+
+	distance := rand.Float64() * *radius * 2
+
+	xDelta := distance * rand.Float64()
+
+	xPos := startX - *radius + xDelta
+
+	yDelta := distance * rand.Float64()
+
+	yPos := startY - *radius + yDelta
+
+	mmPerMin := *speed * 60
+	output := fmt.Sprintf("G1 X%f Y%f F%d;", xPos, yPos, mmPerMin)
+
+	fmt.Println(output)
+
 }
