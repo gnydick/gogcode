@@ -40,13 +40,15 @@ func (s State) ZPosition() float64 {
 }
 
 func (s *State) Update(inst *Instruction) {
-	if (*inst).Command == "G90" {
+	switch command := (*inst).Command; command {
+	case "G90":
 		(*s).MovementPositioning = "absolute"
-	} else if (*inst).Command == "G91" {
+	case "G91":
 		(*s).MovementPositioning = "relative"
-	} else if (*inst).Command == "G1" {
+	case "G1":
 		s.updateZ(inst)
 	}
+
 }
 
 func (s *State) updateZ(inst *Instruction) {
@@ -96,7 +98,6 @@ func (i Instruction) HasCoordinate(axis string) bool {
 	}
 
 }
-
 
 func (i Instruction) Coordinate(axis string) string {
 	return fmt.Sprintf("%s%f", axis, i.Position[axis])

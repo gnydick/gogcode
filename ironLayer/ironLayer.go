@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
+
 	"runtime/pprof"
 
 	. "github.com/gnydick/gogcode/gcode/structs"
@@ -14,8 +15,8 @@ import (
 )
 
 var state = State{}
-var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
-var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
+var cpuProfile = flag.String("cpuProfile", "", "write cpu profile to `file`")
+var memProfile = flag.String("memProfile", "", "write memory profile to `file`")
 var zStart = flag.Float64("zstart", 1.0, "height to start")
 var input = flag.String("input", "", "input file")
 var output = flag.String("output", "", "output file")
@@ -23,8 +24,8 @@ var util = NewUtil()
 
 func main() {
 	flag.Parse()
-	if *cpuprofile != "" {
-		f, err := os.Create(*cpuprofile)
+	if *cpuProfile != "" {
+		f, err := os.Create(*cpuProfile)
 		if err != nil {
 			log.Fatal("could not create CPU profile: ", err)
 		}
@@ -33,6 +34,7 @@ func main() {
 		}
 		defer pprof.StopCPUProfile()
 	}
+
 	i, err := os.Open(*input)
 	check(err)
 	scanner := bufio.NewScanner(i)
@@ -40,7 +42,14 @@ func main() {
 	o, err := os.Create(*output)
 	check(err)
 
-	defer o.Close()
+	bo := bufio.NewWriter(o)
+
+	defer func() {
+		i.Close()
+		bo.Flush()
+		o.Close()
+	}()
+
 	bb := bytes.Buffer{}
 	var curInst *Instruction
 	bb.WriteString("; First ironing buffer\n")
@@ -51,34 +60,26 @@ func main() {
 		curInst = util.GenGcode(line)
 		state.Update(curInst)
 
-		pipeInstruction(o, &bb, curInst, zStart)
+		pipeInstruction(bo, &bb, curInst, zStart)
 
 		if line == ";BEFORE_LAYER_CHANGE" {
-			flush(o, &bb, zStart)
+			flush(bo, &bb, zStart)
 		}
 	}
 
 }
 
-func flush(o *os.File, bb *bytes.Buffer, zStart *float64) {
+func flush(bo *bufio.Writer, bb *bytes.Buffer, zStart *float64) {
 	if state.ZPosition() >= *zStart {
-		pipeInstruction(o, bb, util.GenGcode("G1 E15 F2400"), zStart)
-		pipeInstruction(o, bb, util.GenGcode("G1 F3000"), zStart)
-		o.WriteString(bb.String())
+		pipeInstruction(bo, bb, util.GenGcode("G1 E15 F2400"), zStart)
+		pipeInstruction(bo, bb, util.GenGcode("G1 F3000"), zStart)
+		bo.WriteString(bb.String())
 		if len(DEBUG) > 0 {
 			fmt.Println(bb.String())
 		}
 		bb.Reset()
-		pipeInstruction(o, bb, util.GenGcode("G1 E-15 F6000"), zStart)
+		pipeInstruction(bo, bb, util.GenGcode("G1 E-15 F6000"), zStart)
 	}
-
-}
-
-func isExtrudeMove(inst *Instruction) bool {
-	if ((*inst).HasCoordinate("X") || (*inst).HasCoordinate("Y")) && !(*inst).HasCoordinate("Z") && (*inst).HasCoordinate("E") {
-		return true
-	}
-	return false
 }
 
 func check(e error) {
@@ -89,27 +90,29 @@ func check(e error) {
 
 var DEBUG = os.Getenv("DEBUG")
 
-func pipeInstruction(o *os.File, bb *bytes.Buffer, inst *Instruction, zStart *float64) {
+func pipeInstruction(bo *bufio.Writer, bb *bytes.Buffer, inst *Instruction, zStart *float64) {
 
 	if state.ZPosition() >= *zStart {
-		if isExtrudeMove(inst) && DetectTravel(inst) {
-			o.WriteString((*inst).MovementOnly() + "\n")
+		if IsExtrudeMove(inst) {
+			bo.WriteString((*inst).Gcode() + "\n")
 			bb.WriteString((*inst).MovementOnly() + "\n")
 			if len(DEBUG) > 0 {
-				fmt.Println((*inst).MovementOnly())
+				fmt.Println("output: " + (*inst).Gcode() + "\n")
+				fmt.Println("buffer: " + (*inst).MovementOnly() + "\n")
 			}
 		} else {
-			o.WriteString((*inst).Gcode() + "\n")
+			bo.WriteString((*inst).Gcode() + "\n")
 			bb.WriteString((*inst).Gcode() + "\n")
 			if len(DEBUG) > 0 {
-				fmt.Println((*inst).Gcode())
+				fmt.Println("output: " + (*inst).Gcode() + "\n")
+				fmt.Println("buffer: " + (*inst).Gcode() + "\n")
 			}
 		}
 
 	} else {
-		o.WriteString((*inst).Gcode() + "\n")
+		bo.WriteString((*inst).Gcode() + "\n")
 		if len(DEBUG) > 0 {
-			fmt.Println((*inst).Gcode())
+			fmt.Println("output: " + (*inst).Gcode() + "\n")
 		}
 	}
 

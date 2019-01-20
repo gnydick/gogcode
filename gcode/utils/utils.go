@@ -10,13 +10,10 @@ import (
 	"strings"
 )
 
-
 type Util struct {
 	commandRe *r.Regexp
-	paramRe *r.Regexp
+	paramRe   *r.Regexp
 }
-
-
 
 func NewUtil() *Util {
 	return &Util{
@@ -40,6 +37,17 @@ func beautifyLine(line string) (tokens []string) {
 	return
 }
 
+func IsExtrudeMove(inst *Instruction) bool {
+	if (*inst).Command == "G1" {
+		if ((*inst).HasCoordinate("X") || (*inst).HasCoordinate("Y")) && !(*inst).HasCoordinate("Z") && (*inst).HasCoordinate("E") {
+			return true
+		}
+		return false
+	} else {
+		return false
+	}
+}
+
 func (u Util) GenGcode(line string) *Instruction {
 	tokens := beautifyLine(line)
 	instruction := NewInstruction()
@@ -59,7 +67,6 @@ func (u Util) GenGcode(line string) *Instruction {
 						log.Fatal(_err.Error())
 					}
 
-
 					instruction.Position[paramString[0:1]] = value
 				}
 			}
@@ -68,7 +75,7 @@ func (u Util) GenGcode(line string) *Instruction {
 	return &instruction
 }
 
-func DetectTravel(gcode *Instruction) (bool) {
+func DetectTravel(gcode *Instruction) bool {
 
 	if (*gcode).Command == "G1" {
 		if (*gcode).HasCoordinate("X") || (*gcode).HasCoordinate("Y") {
@@ -95,5 +102,3 @@ func AddZHop(line *string, hop float32) string {
 	sb.WriteString("G90 ; set absolute positioning ; added by gogcode\n")
 	return sb.String()
 }
-
-
