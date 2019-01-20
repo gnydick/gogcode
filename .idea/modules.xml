@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/gogcode.iml" filepath="$PROJECT_DIR$/gogcode.iml" />
       <module fileurl="file://$PROJECT_DIR$/ironLayer/ironLayer.iml" filepath="$PROJECT_DIR$/ironLayer/ironLayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/lapping/lapping.iml" filepath="$PROJECT_DIR$/lapping/lapping.iml" />
-      <module fileurl="file://$PROJECT_DIR$/segmentTests/segmentTests.iml" filepath="$PROJECT_DIR$/segmentTests/segmentTests.iml" />
     </modules>
   </component>
 </project>

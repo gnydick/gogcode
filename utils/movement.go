@@ -2,7 +2,7 @@ package utils
 
 import (
 	"fmt"
-	. "github.com/gnydick/gogcode/gcode/structs"
+	. "github.com/gnydick/gogcode/structs"
 	"log"
 	"math/rand"
 

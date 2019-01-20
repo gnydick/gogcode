@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	. "github.com/gnydick/gogcode/gcode/utils"
+	. "github.com/gnydick/gogcode/utils"
 	"strings"
 )
 

@@ -8,8 +8,8 @@ import (
 
 	"runtime/pprof"
 
-	. "github.com/gnydick/gogcode/gcode/structs"
-	. "github.com/gnydick/gogcode/gcode/utils"
+	. "github.com/gnydick/gogcode/structs"
+	. "github.com/gnydick/gogcode/utils"
 	"log"
 	"os"
 )
