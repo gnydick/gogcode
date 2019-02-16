@@ -9,7 +9,7 @@ import (
 
 func main() {
 	speed := flag.Int("s", 200, "mm/sec desired (not actual)")
-	lines := flag.Int("n", 100, "number of randum strokes")
+	lines := flag.Int("n", 100, "number of random strokes")
 	radius := flag.Float64("r", 1, "radius for movements")
 
 	jerk := flag.String("j", "750:2000", "jerk, printing:lapping")

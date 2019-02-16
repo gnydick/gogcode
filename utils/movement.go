@@ -11,6 +11,40 @@ import (
 	"strings"
 )
 
+type Axis int
+
+const (
+	X Axis = iota
+	Y
+	Z
+	E0
+	E1
+)
+
+func (a Axis) String() string {
+	names := [...]string{
+		"X", "Y", "Z", "E1", "E2",
+	}
+	return names[a]
+}
+
+type Transform struct {
+	axis     Axis
+	distance float64
+}
+
+func NewTransform(axis Axis, distance float64) Transform {
+
+	return Transform{
+		axis:     axis,
+		distance: distance,
+	}
+}
+
+func (t Transform) String() string {
+	return fmt.Sprintf("%s%f", t.axis, t.distance)
+}
+
 type Util struct {
 	commandRe *r.Regexp
 	paramRe   *r.Regexp
@@ -21,6 +55,15 @@ func NewUtil() *Util {
 		commandRe: r.MustCompile(`^(?P<command>[GM])(?P<value>-*[0-9.]+)$`),
 		paramRe:   r.MustCompile(`^(?P<param>[A-Z])(?P<value>-*[0-9]+\.*[0-9]*)$`),
 	}
+}
+
+func Move(transforms []Transform, speed float64, comment ...string) string {
+	strs := make([]string,len(transforms))
+	for i := 0; i < len(transforms); i++ {
+		strs[i] = transforms[i].String()
+	}
+	return fmt.Sprintf("G1 %s ;%s", strings.Join(strs[:], " "), comment)
+
 }
 
 func beautifyLine(line string) (tokens []string) {

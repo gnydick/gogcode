@@ -29,11 +29,7 @@ func main() {
 
 		line := scanner.Text()
 		GenGcode(&instruction, line)
-		travel, _err := DetectTravel(&instruction)
-		if _err != nil {
-			fmt.Printf("travel is %t, received non G1 instruction\n", travel)
-			continue
-		}
+		travel := DetectTravel(&instruction)
 
 		if travel {
 			o.WriteString(AddZHop(&line, .6))
