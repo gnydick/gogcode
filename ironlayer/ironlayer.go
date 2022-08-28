@@ -5,13 +5,12 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
-
+	"log"
+	"os"
 	"runtime/pprof"
 
 	. "github.com/gnydick/gogcode/structs"
 	. "github.com/gnydick/gogcode/utils"
-	"log"
-	"os"
 )
 
 var state = State{}
@@ -36,11 +35,11 @@ func main() {
 	}
 
 	i, err := os.Open(*input)
-	check(err)
+	Check(err)
 	scanner := bufio.NewScanner(i)
 
 	o, err := os.Create(*output)
-	check(err)
+	Check(err)
 
 	bo := bufio.NewWriter(o)
 
@@ -79,12 +78,6 @@ func flush(bo *bufio.Writer, bb *bytes.Buffer, zStart *float64) {
 		}
 		bb.Reset()
 		pipeInstruction(bo, bb, util.GenGcode("G1 E-15 F6000"), zStart)
-	}
-}
-
-func check(e error) {
-	if e != nil {
-		log.Fatal(e)
 	}
 }
 

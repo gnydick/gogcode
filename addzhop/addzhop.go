@@ -2,10 +2,10 @@ package main
 
 import (
 	"bufio"
-	"fmt"
+	"os"
+
 	. "github.com/gnydick/gogcode/structs"
 	. "github.com/gnydick/gogcode/utils"
-	"os"
 )
 
 var tools = ToolSet{}
@@ -16,20 +16,24 @@ func main() {
 	output := args[1]
 
 	i, err := os.Open(input)
-	check(err)
+	Check(err)
 	scanner := bufio.NewScanner(i)
 
 	o, err := os.Create(output)
-	check(err)
+	Check(err)
 
-	defer o.Close()
+	defer func() {
+		if err := o.Close(); err != nil {
+			panic(err)
+		}
+	}()
 
 	for scanner.Scan() {
-		instruction := NewInstruction()
 
+		util := NewUtil()
 		line := scanner.Text()
-		GenGcode(&instruction, line)
-		travel := DetectTravel(&instruction)
+		instruction := util.GenGcode(line)
+		travel := DetectTravel(instruction)
 
 		if travel {
 			o.WriteString(AddZHop(&line, .6))
@@ -38,9 +42,4 @@ func main() {
 		}
 	}
 
-}
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
 }

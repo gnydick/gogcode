@@ -1,0 +1,13 @@
+go 1.19
+
+use (
+	.
+	./addzhop
+	./ironlayer
+	./lapping
+	./lubrication
+	./matrixcalibration
+	./structs
+	./utils
+	./viz
+)
