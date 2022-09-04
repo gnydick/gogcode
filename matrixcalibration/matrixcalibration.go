@@ -5,7 +5,6 @@ import (
 	"bytes"
 	"flag"
 	"log"
-	"math"
 	"os"
 	"runtime/pprof"
 	"strings"
@@ -21,7 +20,8 @@ var memProfile = flag.String("memProfile", "", "write memory profile to `file`")
 
 var input = flag.String("input", "", "input file")
 var output = flag.String("output", "", "output file")
-
+var xcount = flag.Int("xcount", 2, "number of objects along the x axis")
+var ycount = flag.Int("ycount", 2, "number of objects along the y axis")
 var xGcode = flag.String("xGcode", "M572 S", "what command to use along the x-axis")
 var xRange = flag.String("xRange", "0:100", "starting and ending value `0:100`")
 var yGcode = flag.String("ygcode", "M566 E", "what command to use along the y-axis")
@@ -32,9 +32,6 @@ var zRange = flag.String("zRange", "0:100", "starting and ending value `0:100`")
 func main() {
 
 	flag.Parse()
-	println(*input)
-	println(*output)
-	println(*xGcode)
 	if *cpuProfile != "" {
 		f, err := os.Create(*cpuProfile)
 		if err != nil {
@@ -67,11 +64,10 @@ func main() {
 	for scanner.Scan() {
 		line := scanner.Text()
 		if strings.HasPrefix(line, "; printing object ") {
-			objectId := line[18:len(line)]
-			println(objectId)
-			sqrt := math.Pow(float64(len(util.GcodeMeta.Objects)), .5)
-			// TODO should change this to just check for a rectangle that matches the input rectangle
-			if sqrt*sqrt == math.Floor(sqrt)*math.Floor(sqrt) {
+			objectId := line[18:]
+			if objectId == objectId {
+			}
+			if *xcount**ycount == len(util.GcodeMeta.Objects) {
 				println("have square number of objects")
 
 			}
