@@ -57,6 +57,12 @@ func main() {
 		bo.Flush()
 		o.Close()
 	}()
+	x := *xcount
+	y := *ycount
+	if x == y {
+	}
+
+	commandMatrix := make([][]float64, x, y)
 
 	bb := bytes.Buffer{}
 	var curInsts []*Instruction
