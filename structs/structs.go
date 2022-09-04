@@ -35,6 +35,10 @@ type State struct {
 	zPosition           float64
 }
 
+type GcodeMeta struct {
+	Objects []string
+}
+
 func (s State) ZPosition() float64 {
 	return s.zPosition
 }

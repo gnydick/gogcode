@@ -1,14 +1,15 @@
 package utils
 
 import (
+	json "encoding/json"
 	"fmt"
-	. "github.com/gnydick/gogcode/structs"
 	"log"
 	"math/rand"
-
 	r "regexp"
 	"strconv"
 	"strings"
+
+	. "github.com/gnydick/gogcode/structs"
 )
 
 type Axis int
@@ -17,8 +18,11 @@ const (
 	X Axis = iota
 	Y
 	Z
+	C
 	E0
 	E1
+	E2
+	E3
 )
 
 func (a Axis) String() string {
@@ -48,17 +52,26 @@ func (t Transform) String() string {
 type Util struct {
 	commandRe *r.Regexp
 	paramRe   *r.Regexp
+	toolRe    *r.Regexp
+	GcodeMeta *GcodeMeta
 }
 
 func NewUtil() *Util {
+	var objects []string
+	gcodeMeta := GcodeMeta{
+		Objects: objects,
+	}
+
 	return &Util{
 		commandRe: r.MustCompile(`^(?P<command>[GM])(?P<value>-*[0-9.]+)$`),
 		paramRe:   r.MustCompile(`^(?P<param>[A-Z])(?P<value>-*[0-9]+\.*[0-9]*)$`),
+		toolRe:    r.MustCompile(`^(?P<tool>[T])(?P<value>-*[0-9.]+)$`),
+		GcodeMeta: &gcodeMeta,
 	}
 }
 
 func Move(transforms []Transform, speed float64, comment ...string) string {
-	strs := make([]string,len(transforms))
+	strs := make([]string, len(transforms))
 	for i := 0; i < len(transforms); i++ {
 		strs[i] = transforms[i].String()
 	}
@@ -66,7 +79,11 @@ func Move(transforms []Transform, speed float64, comment ...string) string {
 
 }
 
-func beautifyLine(line string) (tokens []string) {
+func beautifyLine(line string, util *Util) (tokens []string) {
+	if strings.HasPrefix(line, ";") {
+		i := *util
+		i.processInfo(&line)
+	}
 	fields := strings.Fields(line)
 
 	for _, field := range fields {
@@ -76,6 +93,27 @@ func beautifyLine(line string) (tokens []string) {
 			tokens = append(tokens, field[0:len(field)-2])
 		} else {
 			tokens = append(tokens, field)
+		}
+	}
+
+	return
+}
+
+// exact object declaration below
+// ; object:{"name":"3DBenchy","id":"3DBenchy.stl id:0 copy 0","object_center":[137.499500,143.998000,0.000000],"boundingbox_center":[137.499500,143.998000,24.000000],"boundingbox_size":[60.000999,31.004000,48.000000]}
+func (u *Util) processInfo(gcodeInfo *string) {
+
+	if strings.HasPrefix(*gcodeInfo, ";") && len(*gcodeInfo) > 1 {
+		infoObject := strings.Trim((*gcodeInfo)[1:len(*gcodeInfo)], " ")
+		// record new object, read from json
+		if strings.HasPrefix(infoObject, "object:") {
+			objectJson := infoObject[7:len(infoObject)]
+			var object map[string]string
+			json.Unmarshal([]byte(objectJson), &object)
+			u.GcodeMeta.Objects = append(u.GcodeMeta.Objects, object["id"])
+		} else if strings.HasPrefix(infoObject, "printing object ") {
+			objectId := infoObject[16:len(infoObject)]
+			println(objectId)
 		}
 	}
 	return
@@ -92,8 +130,8 @@ func IsExtrudeMove(inst *Instruction) bool {
 	}
 }
 
-func (u Util) GenGcode(line string) *Instruction {
-	tokens := beautifyLine(line)
+func (u *Util) GenGcode(line string) *Instruction {
+	tokens := beautifyLine(line, u)
 	instruction := NewInstruction()
 	if len(tokens) >= 1 {
 		for _, commandMatches := range u.commandRe.FindAllStringSubmatchIndex(tokens[0], -1) {
