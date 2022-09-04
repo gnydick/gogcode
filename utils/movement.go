@@ -97,6 +97,7 @@ func beautifyLine(line string, util *Util) (tokens []string) {
 	return
 }
 
+// TODO need to convert this to watching for M486 S<num> instead of "printing object ..."
 // exact object declaration below
 // ; object:{"name":"3DBenchy","id":"3DBenchy.stl id:0 copy 0","object_center":[137.499500,143.998000,0.000000],"boundingbox_center":[137.499500,143.998000,24.000000],"boundingbox_size":[60.000999,31.004000,48.000000]}
 func (u *Util) processInfo(gcodeInfo *string) {

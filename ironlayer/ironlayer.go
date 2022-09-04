@@ -50,7 +50,7 @@ func main() {
 	}()
 
 	bb := bytes.Buffer{}
-	var curInst *Instruction
+	var curInst []*Instruction
 	bb.WriteString("; First ironing buffer\n")
 	bb.WriteString("G1 E-15 F6000\n")
 	for scanner.Scan() {
@@ -83,30 +83,30 @@ func flush(bo *bufio.Writer, bb *bytes.Buffer, zStart *float64) {
 
 var DEBUG = os.Getenv("DEBUG")
 
-func pipeInstruction(bo *bufio.Writer, bb *bytes.Buffer, inst *Instruction, zStart *float64) {
-
-	if state.ZPosition() >= *zStart {
-		if IsExtrudeMove(inst) {
-			bo.WriteString((*inst).Gcode() + "\n")
-			bb.WriteString((*inst).MovementOnly() + "\n")
-			if len(DEBUG) > 0 {
-				fmt.Println("output: " + (*inst).Gcode() + "\n")
-				fmt.Println("buffer: " + (*inst).MovementOnly() + "\n")
+func pipeInstruction(bo *bufio.Writer, bb *bytes.Buffer, instructions []*Instruction, zStart *float64) {
+	for _, inst := range instructions {
+		if state.ZPosition() >= *zStart {
+			if IsExtrudeMove(inst) {
+				bo.WriteString((*inst).Gcode() + "\n")
+				bb.WriteString((*inst).MovementOnly() + "\n")
+				if len(DEBUG) > 0 {
+					fmt.Println("output: " + (*inst).Gcode() + "\n")
+					fmt.Println("buffer: " + (*inst).MovementOnly() + "\n")
+				}
+			} else {
+				bo.WriteString((*inst).Gcode() + "\n")
+				bb.WriteString((*inst).Gcode() + "\n")
+				if len(DEBUG) > 0 {
+					fmt.Println("output: " + (*inst).Gcode() + "\n")
+					fmt.Println("buffer: " + (*inst).Gcode() + "\n")
+				}
 			}
+
 		} else {
 			bo.WriteString((*inst).Gcode() + "\n")
-			bb.WriteString((*inst).Gcode() + "\n")
 			if len(DEBUG) > 0 {
 				fmt.Println("output: " + (*inst).Gcode() + "\n")
-				fmt.Println("buffer: " + (*inst).Gcode() + "\n")
 			}
 		}
-
-	} else {
-		bo.WriteString((*inst).Gcode() + "\n")
-		if len(DEBUG) > 0 {
-			fmt.Println("output: " + (*inst).Gcode() + "\n")
-		}
 	}
-
 }
