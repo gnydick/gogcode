@@ -70,6 +70,7 @@ func main() {
 			objectId := line[18:len(line)]
 			println(objectId)
 			sqrt := math.Pow(float64(len(util.GcodeMeta.Objects)), .5)
+			// TODO should change this to just check for a rectangle that matches the input rectangle
 			if sqrt*sqrt == math.Floor(sqrt)*math.Floor(sqrt) {
 				println("have square number of objects")
 
