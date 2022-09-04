@@ -28,17 +28,19 @@ func main() {
 		}
 	}()
 
+	util := NewUtil()
 	for scanner.Scan() {
 
-		util := NewUtil()
 		line := scanner.Text()
-		instruction := util.GenGcode(line)
-		travel := DetectTravel(instruction)
+		instructions := util.GenGcode(line)
+		for _, instruction := range instructions {
+			travel := DetectTravel(instruction)
 
-		if travel {
-			o.WriteString(AddZHop(&line, .6))
-		} else {
-			o.WriteString(line + "\n")
+			if travel {
+				o.WriteString(AddZHop(&line, .6))
+			} else {
+				o.WriteString(line + "\n")
+			}
 		}
 	}
 	println("Hello!")

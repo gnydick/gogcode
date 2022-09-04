@@ -43,14 +43,16 @@ func (s State) ZPosition() float64 {
 	return s.zPosition
 }
 
-func (s *State) Update(inst *Instruction) {
-	switch command := (*inst).Command; command {
-	case "G90":
-		(*s).MovementPositioning = "absolute"
-	case "G91":
-		(*s).MovementPositioning = "relative"
-	case "G1":
-		s.updateZ(inst)
+func (s *State) Update(insts []*Instruction) {
+	for _, inst := range insts {
+		switch command := (*inst).Command; command {
+		case "G90":
+			(*s).MovementPositioning = "absolute"
+		case "G91":
+			(*s).MovementPositioning = "relative"
+		case "G1":
+			s.updateZ(inst)
+		}
 	}
 
 }
