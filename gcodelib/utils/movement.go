@@ -3,11 +3,10 @@ package utils
 import (
 	json "encoding/json"
 	"fmt"
+	. "github.com/gnydick/gogcode/gcodelib/v2/structs"
 	"math/rand"
 	r "regexp"
 	"strings"
-
-	. "github.com/gnydick/gogcode/structs"
 )
 
 type Axis int

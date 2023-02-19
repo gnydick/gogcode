@@ -1,13 +1,3 @@
-go 1.19
-
-use (
-	.
-	./addzhop
-	./ironlayer
-	./lapping
-	./lubrication
-	./matrixcalibration
-	./structs
-	./utils
-	./viz
-)
+go 1.20
+use cmds
+use gcodelib
