@@ -3,7 +3,7 @@ package utils
 import (
 	json "encoding/json"
 	"fmt"
-	. "github.com/gnydick/gogcode/gcodelib/v2/structs"
+	. "github.com/gnydick/gogcode/pkg/structs"
 	"math/rand"
 	r "regexp"
 	"strings"
@@ -61,7 +61,7 @@ func NewUtil() *Util {
 
 	return &Util{
 		commandRe: r.MustCompile(`^(?P<command>[GM])(?P<value>-*[0-9.]+)$`),
-		paramRe:   r.MustCompile(`^(?P<param>[A-Z])(?P<value>-*[0-9]+\.*[0-9]*)$`),
+		paramRe:   r.MustCompile(`^(?P<param>[A-Z])(?P<quotestart>["]*)(?P<value>-*[0-9]+\.*\[0-9]*)(?P<quoteend>["]*)$`),
 		toolRe:    r.MustCompile(`^(?P<tool>[T])(?P<value>-*[0-9.]+)$`),
 		GcodeMeta: &gcodeMeta,
 	}

@@ -4,7 +4,7 @@ import (
 	"log"
 	"strconv"
 
-	. "github.com/gnydick/gogcode/gcodelib/v2/structs"
+	. "github.com/gnydick/gogcode/pkg/structs"
 )
 
 func (u *Util) GenGcode(line string) []*Instruction {

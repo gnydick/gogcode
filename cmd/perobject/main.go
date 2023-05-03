@@ -4,8 +4,8 @@ import (
 	"bufio"
 	"os"
 
-	. "github.com/gnydick/gogcode/structs"
-	. "github.com/gnydick/gogcode/utils"
+	. "github.com/gnydick/gogcode/pkg/structs"
+	. "github.com/gnydick/gogcode/pkg/utils"
 )
 
 var tools = ToolSet{}
@@ -14,6 +14,7 @@ func main() {
 	args := os.Args[1:]
 	input := args[0]
 	output := args[1]
+	//value_range := args[2]
 
 	i, err := os.Open(input)
 	Check(err)
@@ -22,10 +23,18 @@ func main() {
 	o, err := os.Create(output)
 	Check(err)
 
+	bo := bufio.NewWriter(o)
+
+	//defer func() {
+	//	if err := o.Close(); err != nil {
+	//		panic(err)
+	//	}
+	//}()
+
 	defer func() {
-		if err := o.Close(); err != nil {
-			panic(err)
-		}
+		i.Close()
+		bo.Flush()
+		o.Close()
 	}()
 
 	util := NewUtil()
@@ -34,13 +43,10 @@ func main() {
 		line := scanner.Text()
 		instructions := util.GenGcode(line)
 		for _, instruction := range instructions {
-			travel := DetectTravel(instruction)
-
-			if travel {
-				o.WriteString(AddZHop(&line, .6))
-			} else {
-				o.WriteString(line + "\n")
+			if instruction.Command == "M486" {
+				bo.WriteString((*instruction).Gcode() + "\n")
 			}
+
 		}
 	}
 	println("Hello!")

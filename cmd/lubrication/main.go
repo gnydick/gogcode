@@ -3,7 +3,7 @@ package main
 import (
 	flag "flag"
 	"fmt"
-	. "github.com/gnydick/gogcode/utils"
+	. "github.com/gnydick/gogcode/pkg/utils"
 )
 
 func main() {

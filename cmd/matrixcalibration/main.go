@@ -10,8 +10,8 @@ import (
 	strconv "strconv"
 	"strings"
 
-	. "github.com/gnydick/gogcode/structs"
-	. "github.com/gnydick/gogcode/utils"
+	. "github.com/gnydick/gogcode/pkg/structs"
+	. "github.com/gnydick/gogcode/pkg/utils"
 )
 
 var meta = GcodeMeta{}

@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/cmds/addzhop/addzhop.iml" filepath="$PROJECT_DIR$/cmds/addzhop/addzhop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmd/addzhop/addzhop.iml" filepath="$PROJECT_DIR$/cmd/addzhop/addzhop.iml" />
       <module fileurl="file://$PROJECT_DIR$/gogcode.iml" filepath="$PROJECT_DIR$/gogcode.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cmds/ironlayer/ironlayer.iml" filepath="$PROJECT_DIR$/cmds/ironlayer/ironlayer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cmds/lapping/lapping.iml" filepath="$PROJECT_DIR$/cmds/lapping/lapping.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cmds/lubrication/lubrication.iml" filepath="$PROJECT_DIR$/cmds/lubrication/lubrication.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cmds/matrixcalibration/matrixcalibration.iml" filepath="$PROJECT_DIR$/cmds/matrixcalibration/matrixcalibration.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gcodelib/structs/structs.iml" filepath="$PROJECT_DIR$/gcodelib/structs/structs.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gcodelib/utils/utils.iml" filepath="$PROJECT_DIR$/gcodelib/utils/utils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cmds/viz/viz.iml" filepath="$PROJECT_DIR$/cmds/viz/viz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmd/ironlayer/ironlayer.iml" filepath="$PROJECT_DIR$/cmd/ironlayer/ironlayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmd/lapping/lapping.iml" filepath="$PROJECT_DIR$/cmd/lapping/lapping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmd/lubrication/lubrication.iml" filepath="$PROJECT_DIR$/cmd/lubrication/lubrication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmd/matrixcalibration/matrixcalibration.iml" filepath="$PROJECT_DIR$/cmd/matrixcalibration/matrixcalibration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmd/perobject/perobject.iml" filepath="$PROJECT_DIR$/cmd/perobject/perobject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmd/viz/viz.iml" filepath="$PROJECT_DIR$/cmd/viz/viz.iml" />
     </modules>
   </component>
 </project>

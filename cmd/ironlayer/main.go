@@ -9,8 +9,8 @@ import (
 	"os"
 	"runtime/pprof"
 
-	. "github.com/gnydick/gogcode/gcodelib/v2/structs"
-	. "github.com/gnydick/gogcode/gcodelib/v2/utils"
+	. "github.com/gnydick/gogcode/pkg/structs"
+	. "github.com/gnydick/gogcode/pkg/utils"
 )
 
 var state = State{}
