@@ -43,10 +43,8 @@ func main() {
 		line := scanner.Text()
 		instructions := util.GenGcode(line)
 		for _, instruction := range instructions {
-			if instruction.Command == "M486" {
-				bo.WriteString((*instruction).Gcode() + "\n")
-			}
-
+			new_line := (*instruction).Gcode()
+			bo.WriteString(new_line + "\n")
 		}
 	}
 }

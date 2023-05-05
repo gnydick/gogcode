@@ -82,7 +82,8 @@ type Instruction struct {
 	ToolSet           ToolSet
 	Position          map[string]float64
 	MotionPositioning MotionPositioning
-	OtherParams       map[string]float64
+	OtherParams       map[string]string
+	Comment           string
 }
 
 func (i Instruction) Marshal() string {
@@ -134,16 +135,27 @@ func (i Instruction) MovementOnly() string {
 
 }
 func (i Instruction) Gcode() string {
-	var fields = make([]string, len(i.Position)+2)
-	fields[0] = i.Command
-	fieldNo := 0
-	for k, v := range i.Position {
-		fieldNo++
-		fields[fieldNo] = fmt.Sprintf("%s%f", k, v)
+	output := strings.Builder{}
+	if len(i.Command) > 0 {
+		output.WriteString(i.Command + ` `)
 	}
-	fieldNo++
-	fields[fieldNo] = ";"
-	return strings.Join(fields, " ")
+	x := 0
+	for k, v := range i.OtherParams {
+		if x > 0 {
+			output.WriteString(` `)
+		}
+		x++
+		output.WriteString(k + v)
+	}
+	if len(i.Comment) > 0 {
+		if len(i.OtherParams) > 0 || len(i.Command) > 0 {
+			output.WriteString(` `)
+		}
+
+		length, _ := output.WriteString(`; ` + i.Comment)
+		println(length)
+	}
+	return output.String()
 
 }
 
