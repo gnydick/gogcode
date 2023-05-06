@@ -6,10 +6,10 @@ import (
 )
 
 var gcodeRegex = `(?P<command>[gm]\d+)`
-var paramRegex = `(?:[a-z]-*\d*\.\d+)|(?:[a-z]".+")`
+var paramRegex = `(?i)(?P<parameters>(?:(?:\s*)(?:[a-z]-?\d*(?:\.\d*)??|[a-z]"[\w-_. ]+(?:\.\d*)?"))+)`
 
 var commentRegex = `(?:;\s*(?P<comment>.*))`
-var lineRegex = `^(?i)(?P<command>[mgt]\d+)?\s*(?P<parameters>(?:(?:\s*)(?:[a-z]-?\d*(?:\.\d*)??|[a-z]"[\w-_. ]+(?:\.\d*)?"))+){0,1}(?:\s*);\s*(?P<comment>.*)?$`
+var lineRegex = `^(?i)(?P<command>[mgt]\d+)?\s*(?P<parameters>(?:(?:\s*)(?:[a-z]-?\d*(?:\.\d*)??|[a-z]"[\w-_. ]+(?:\.\d*)?"))+)?(?:\s*)(?:(?:;+)(?:\s*)(?P<comment>.*))?$`
 
 var x = 0
 

@@ -17,6 +17,7 @@ var startValue = flag.Float64("startValue", 0, "")
 var endValue = flag.Float64("endValue", 0, "")
 
 var objectCount = flag.Float64("objectCount", 0, "")
+var commandPrefix = flag.String("commandPrefix", "", "")
 
 var changemap = make(map[string]float64)
 
@@ -57,14 +58,13 @@ func main() {
 		instructions := util.GenGcode(line)
 		for _, inst := range instructions {
 			if inst.Command == "M486" {
-				if _, ok := changemap[inst.OtherParams["S"]]; ok {
-					continue
-				} else {
+				if _, ok := changemap[inst.OtherParams["S"]]; !ok {
 					newValue := lastValue + interval
-					changemap[inst.OtherParams["S"]] = newValue
 					lastValue = newValue
+					changemap[inst.OtherParams["S"]] = newValue
 				}
-				bo.WriteString(`M201 E` + fmt.Sprintf("%f", changemap[inst.OtherParams["S"]]) + "\n")
+				inserted_line := fmt.Sprintf("%s%f", *commandPrefix, changemap[inst.OtherParams["S"]])
+				bo.WriteString(inserted_line + "\n")
 			}
 			new_line := (*inst).Gcode()
 			bo.WriteString(new_line + "\n")
