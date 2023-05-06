@@ -152,8 +152,7 @@ func (i Instruction) Gcode() string {
 			output.WriteString(` `)
 		}
 
-		length, _ := output.WriteString(`; ` + i.Comment)
-		println(length)
+		output.WriteString(`; ` + i.Comment)
 	}
 	return output.String()
 
