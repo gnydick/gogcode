@@ -9,7 +9,7 @@ var gcodeRegex = `(?P<command>[gm]\d+)`
 var paramRegex = `(?:[a-z]-*\d*\.\d+)|(?:[a-z]".+")`
 
 var commentRegex = `(?:;\s*(?P<comment>.*))`
-var lineRegex = `^(?i)(?P<command>[gtm]\d+)*\s+(?P<parameters>(?:\s*[a-z]-*\d*\.\d+|(?:\s*[a-z]".+"))*)*\s*(?:;\s*(?P<comment>.*))?$`
+var lineRegex = `^(?i)(?P<command>[mgt]\d+)?\s*(?P<parameters>(?:(?:\s*)(?:[a-z]-?\d*(?:\.\d*)??|[a-z]"[\w-_. ]+(?:\.\d*)?"))+){0,1}(?:\s*);\s*(?P<comment>.*)?$`
 
 var x = 0
 
