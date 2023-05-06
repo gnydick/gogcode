@@ -6,7 +6,7 @@ import (
 )
 
 var gcodeRegex = `(?P<command>[gm]\d+)`
-var paramRegex = `(?i)(?P<parameters>(?:(?:\s*)(?:[a-z]-?\d*(?:\.\d*)??|[a-z]"[\w-_. ]+(?:\.\d*)?"))+)`
+var paramRegex = `(?i)((?:[a-z]"[\w-_. ]+(?:\.\d*)?")|[a-z]-?\d*(?:\.\d*)?)`
 
 var commentRegex = `(?:;\s*(?P<comment>.*))`
 var lineRegex = `^(?i)(?P<command>[mgt]\d+)?\s*(?P<parameters>(?:(?:\s*)(?:[a-z]-?\d*(?:\.\d*)??|[a-z]"[\w-_. ]+(?:\.\d*)?"))+)?(?:\s*)(?:(?:;+)(?:\s*)(?P<comment>.*))?$`
@@ -25,7 +25,7 @@ func ParseLine(line string) (instruction *Instruction) {
 		params := matches[0][2]
 		comment := matches[0][3]
 
-		paramRe := regexp.MustCompile(`(?i)` + paramRegex)
+		paramRe := regexp.MustCompile(paramRegex)
 		matchedParams := paramRe.FindAllString(params, -1)
 		for _, param := range matchedParams {
 			parameters[param[0:1]] = param[1:]
